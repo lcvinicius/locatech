@@ -18,8 +18,8 @@ public class VehicleService {
     }
 
     public List<Vehicle> findAllVehicles(int page, int size) {
-        int offSet = (page - 1) * size;
-        return this.vehicleRepository.findAll(size, offSet);
+        int offset = page  * size;
+        return this.vehicleRepository.findAll(size, offset);
 
     }
 
