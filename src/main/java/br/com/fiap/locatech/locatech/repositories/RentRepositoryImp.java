@@ -22,6 +22,7 @@ public class RentRepositoryImp implements RentRepository{
     public Optional<Rent> findById(Long id) {
        return this.jdbcClient
                 .sql("SELECT r.id, r.people_id, r.vehicle_id, r.start_date, r.end_date, r.total_value, p.name AS people_name, p.cpf AS people_cpf, p.email AS people_email, p.phone AS people_phone, v.model AS vehicle_model, v.plate AS vehicle_plate FROM rent r INNER JOIN people p ON r.people_id = p.id INNER JOIN vehicle v ON r.vehicle_id = v.id WHERE r.id = :id")
+                .param("id", id)
                 .query(Rent.class)
                 .optional();
     }
@@ -52,6 +53,7 @@ public class RentRepositoryImp implements RentRepository{
     public Integer update(Rent rent, Long id) {
         return this.jdbcClient
                 .sql("UPDATE rent SET people_id = :people_id, vehicle_id = :vehicle_id, start_date = :start_date, end_date = :end_date, total_value = :total_value WHERE id = :id")
+                .param("id", id)
                 .param("people_id", rent.getPeopleId())
                 .param("vehicle_id", rent.getVehicleId())
                 .param("start_date", rent.getStartDate())

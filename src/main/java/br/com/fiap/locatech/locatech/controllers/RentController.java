@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fiap.locatech.locatech.dtos.RentRequestDTO;
 import br.com.fiap.locatech.locatech.entities.Rent;
 import br.com.fiap.locatech.locatech.services.RentService;
 
@@ -47,7 +48,7 @@ public class RentController {
     }
 
     @PostMapping
-    public ResponseEntity<String> saveRent(@RequestBody Rent rent) {
+    public ResponseEntity<String> saveRent(@RequestBody RentRequestDTO rent) {
         logger.info(" POST -> /rents", rent);
         this.rentService.saveRent(rent);
         return ResponseEntity.status(201).body("Rent created successfully");
