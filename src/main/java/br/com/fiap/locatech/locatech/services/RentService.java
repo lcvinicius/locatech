@@ -11,6 +11,8 @@ import br.com.fiap.locatech.locatech.dtos.RentRequestDTO;
 import br.com.fiap.locatech.locatech.entities.Rent;
 import br.com.fiap.locatech.locatech.repositories.RentRepository;
 import br.com.fiap.locatech.locatech.repositories.VehicleRepository;
+import br.com.fiap.locatech.locatech.services.services.exceptions.ResourceNotFoundException;
+import jakarta.annotation.Resource;
 
 
 @Service
@@ -30,7 +32,8 @@ public class RentService {
     }
 
     public  Optional<Rent> findRentById(Long id) {
-        return this.rentRepository.findById(id);
+        return Optional.ofNullable(this.rentRepository.findById(id))
+                .orElseThrow(() -> new ResourceNotFoundException("Rent not found"));
     }
 
     public void saveRent(RentRequestDTO rent) {

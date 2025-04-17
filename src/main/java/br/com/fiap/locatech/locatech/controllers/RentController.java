@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.locatech.locatech.dtos.RentRequestDTO;
 import br.com.fiap.locatech.locatech.entities.Rent;
 import br.com.fiap.locatech.locatech.services.RentService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/rents")
@@ -48,7 +49,7 @@ public class RentController {
     }
 
     @PostMapping
-    public ResponseEntity<String> saveRent(@RequestBody RentRequestDTO rent) {
+    public ResponseEntity<String> saveRent(@Valid @RequestBody RentRequestDTO rent) {
         logger.info(" POST -> /rents", rent);
         this.rentService.saveRent(rent);
         return ResponseEntity.status(201).body("Rent created successfully");
