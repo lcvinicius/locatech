@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.locatech.locatech.services.VehicleService;
 import ch.qos.logback.classic.Logger;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/vehicles")
+@Tag(name = "Vehicle", description = "Endpoints for vehicle management")
 public class VehicleController {
 
     private static final Logger logger = (Logger) LoggerFactory.getLogger(VehicleController.class);

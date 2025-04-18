@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.locatech.locatech.entities.People;
 import br.com.fiap.locatech.locatech.services.PeopleService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/peoples")
+@Tag(name = "People", description = "Endpoints for people management")
 public class PeopleController {
 
     private static final Logger logger = (Logger) LoggerFactory.getLogger(PeopleController.class);
